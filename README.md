@@ -1,6 +1,6 @@
-# s24wb29margana
+# s24db29margana
 
-Hosted At : https://s24wb29margana.onrender.com
+Hosted At : https://s24db29margana.onrender.com
 
 Class: Instruments
 
