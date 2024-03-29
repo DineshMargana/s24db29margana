@@ -1,0 +1,17 @@
+extends layout
+
+block content
+  h1= title
+  - var results = [{instrument_type: "Guitar", brand: "Fender", price: 500},{instrument_type: "Drums", brand: "Pearl", price: 1200},{instrument_type: "Keyboard", brand: "Roland", price: 800}]
+
+  .container-fluid
+    .row
+      each f,index in results 
+        .col-sm-2(onclick=`buy(${index})`)
+          | #{f.instrument_type}, #{f.brand}, $#{f.price}
+          
+  script.
+    function buy(index) {
+      alert(`You purchased Item: ${index+1}`);
+    }
+
