@@ -30,6 +30,7 @@ app.use('/pick', pickRouter);
  
 require('dotenv').config();
 var mongoose = require('mongoose');
+const instruments = require('./models/instruments');
 const connectionString = process.env.MONGO_CON
 mongoose.connect(connectionString);
  
@@ -66,7 +67,7 @@ async function recreateDB(){
   // Delete everything
   await food.deleteMany();
  
-  let instance1 = new food({food_type: 'Pizza', food_size:'Medium', food_price: 10});
+  let instance1 = new instruments({instruments_type: 'Keyboard', Brand:'roland', food_price: 800});
   instance1.save().then(doc=>{
   console.log("First object saved")}
   ).catch(err=>{
@@ -74,7 +75,7 @@ async function recreateDB(){
   });
  
  
-  let instance2 = new food({food_type: 'Burger', food_size:'Large', food_price: 8});
+  let instance2 = new instruments({instruments_type: 'Drums', Brand:'pearl', price: 1200});
   instance2.save().then(doc=>{
   console.log("Second object saved")}
   ).catch(err=>{
@@ -82,7 +83,7 @@ async function recreateDB(){
   });
  
  
-  let instance3 = new food({food_type: 'Salad', food_size:'Small', food_price: 6});
+  let instance3 = new instruments({instruments_type: 'guitar', Brand:'fender', price: 500});
   instance3.save().then(doc=>{
   console.log("Third object saved")}
   ).catch(err=>{
