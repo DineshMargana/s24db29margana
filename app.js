@@ -61,3 +61,33 @@ app.use(function(err, req, res, next) {
 });
  
 module.exports = app;
+
+async function recreateDB(){
+  // Delete everything
+  await food.deleteMany();
+ 
+  let instance1 = new food({food_type: 'Pizza', food_size:'Medium', food_price: 10});
+  instance1.save().then(doc=>{
+  console.log("First object saved")}
+  ).catch(err=>{
+  console.error(err)
+  });
+ 
+ 
+  let instance2 = new food({food_type: 'Burger', food_size:'Large', food_price: 8});
+  instance2.save().then(doc=>{
+  console.log("Second object saved")}
+  ).catch(err=>{
+  console.error(err)
+  });
+ 
+ 
+  let instance3 = new food({food_type: 'Salad', food_size:'Small', food_price: 6});
+  instance3.save().then(doc=>{
+  console.log("Third object saved")}
+  ).catch(err=>{
+  console.error(err)
+  });
+  }
+  let reseed = true;
+  if (reseed) {recreateDB();}
