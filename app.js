@@ -65,7 +65,7 @@ module.exports = app;
 
 async function recreateDB(){
   // Delete everything
-  await food.deleteMany();
+  await instruments.deleteMany();
  
   let instance1 = new instruments({instruments_type: 'Keyboard', Brand:'roland', food_price: 800});
   instance1.save().then(doc=>{
