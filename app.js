@@ -9,6 +9,7 @@ var usersRouter = require('./routes/users');
 var instrumentsRouter = require('./routes/instruments');
 var gridRouter = require('./routes/grid');
 var pickRouter = require('./routes/pick');
+var resourceRouter = require('./routes/resource');
  
 var app = express();
  
@@ -27,23 +28,21 @@ app.use('/users', usersRouter);
 app.use('/instruments', instrumentsRouter);
 app.use('/grid', gridRouter);
 app.use('/pick', pickRouter);
+app.use('/resource', resourceRouter);
  
+var instruments = require("./models/instruments");
 require('dotenv').config();
 var mongoose = require('mongoose');
-const instruments = require('./models/instruments');
-const connectionString = process.env.MONGO_CON
+const connectionString = process.env.MONGO_CON;
 mongoose.connect(connectionString);
- 
+//Get the default connection
 var db = mongoose.connection;
 //Bind connection to error event
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
- 
 db.once("open", function(){
 console.log("Connection to DB succeeded");
  
 });
- 
- 
  
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -62,12 +61,12 @@ app.use(function(err, req, res, next) {
 });
  
 module.exports = app;
-
+ 
 async function recreateDB(){
   // Delete everything
   await instruments.deleteMany();
  
-  let instance1 = new instruments({instruments_type: 'Keyboard', Brand:'roland', food_price: 800});
+  let instance1 = new instruments({instruments_type: 'Guitar', Brand:'Fender', Price: 500});
   instance1.save().then(doc=>{
   console.log("First object saved")}
   ).catch(err=>{
@@ -75,7 +74,7 @@ async function recreateDB(){
   });
  
  
-  let instance2 = new instruments({instruments_type: 'Drums', Brand:'pearl', price: 1200});
+  let instance2 = new instruments({instruments_type: 'Drums', Brand:'Pearl', food_price: 1200});
   instance2.save().then(doc=>{
   console.log("Second object saved")}
   ).catch(err=>{
@@ -83,7 +82,7 @@ async function recreateDB(){
   });
  
  
-  let instance3 = new instruments({instruments_type: 'guitar', Brand:'fender', price: 500});
+  let instance3 = new instruments({instruments_type: 'Keyboard', Brand:'Roland', food_price: 800});
   instance3.save().then(doc=>{
   console.log("Third object saved")}
   ).catch(err=>{
