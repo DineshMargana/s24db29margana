@@ -66,7 +66,7 @@ async function recreateDB(){
   // Delete everything
   await instruments.deleteMany();
  
-  let instance1 = new instruments({Instruments_type: 'Guitar', Brand:'Fender', Price: 500});
+  let instance1 = new instruments({Instrument_type: 'Guitar', Brand:'Fender', Price: 500});
   instance1.save().then(doc=>{
   console.log("First object saved")}
   ).catch(err=>{
@@ -74,7 +74,7 @@ async function recreateDB(){
   });
  
  
-  let instance2 = new instruments({Instruments_type: 'Drums', Brand:'Pearl', Price: 1200});
+  let instance2 = new instruments({Instrument_type: 'Drums', Brand:'Pearl', Price: 1200});
   instance2.save().then(doc=>{
   console.log("Second object saved")}
   ).catch(err=>{
@@ -82,7 +82,7 @@ async function recreateDB(){
   });
  
  
-  let instance3 = new instruments({Instruments_type: 'Keyboard', Brand:'Roland', Price: 800});
+  let instance3 = new instruments({Instrument_type: 'Keyboard', Brand:'Roland', Price: 800});
   instance3.save().then(doc=>{
   console.log("Third object saved")}
   ).catch(err=>{

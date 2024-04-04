@@ -1,4 +1,4 @@
-var instruments= require('../models/Dog');
+var instruments= require('../models/instruments');
 // List of all food
 exports.instruments_list = function(req, res) {
 res.send('NOT IMPLEMENTED: instruments list');
@@ -51,7 +51,7 @@ exports.instruments_create_post = async function(req, res) {
     // We are looking for a body, since POST does not have query parameters.
     // Even though bodies can be in many different formats, we will be picky
     // and require that it be a json object
-    document.Instruments_type = req.body.Instruments_type;
+    document.Instrument_type = req.body.Instrument_type;
     document.Brand = req.body.Brand;
     document.Price = req.body.Price;
     
