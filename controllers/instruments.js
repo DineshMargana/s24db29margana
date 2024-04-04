@@ -51,9 +51,9 @@ exports.instruments_create_post = async function(req, res) {
     // We are looking for a body, since POST does not have query parameters.
     // Even though bodies can be in many different formats, we will be picky
     // and require that it be a json object
-    document.Instrument_type = req.body.Instrument_type;
-    document.Brand = req.body.Brand;
-    document.Price = req.body.Price;
+    document.instrument_type = req.body.instrument_type;
+    document.brand = req.body.brand;
+    document.price = req.body.price;
     
  
     try{
