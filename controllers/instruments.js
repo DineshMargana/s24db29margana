@@ -143,7 +143,7 @@ res.send(`{'error': '${err}'}`);
 exports.instruments_delete_Page = async function (req, res) {
     console.log("instruments view for id " + req.query.id)
     try {
-        result = await fords.findById(req.query.id)
+        result = await instruments.findById(req.query.id)
         res.render('instrumentsdelete', {
             title: 'instruments Delete', toShow:
                 result
