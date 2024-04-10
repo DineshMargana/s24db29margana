@@ -89,4 +89,39 @@ exports.instruments_create_post = async function(req, res) {
     res.send(`{"error": ${err}}`);
     }
     };
-    
+// Handle instruments delete on DELETE.
+exports.instruments_delete = async function(req, res) {
+console.log("delete " + req.params.id)
+try {
+result = await instruments.findByIdAndDelete( req.params.id)
+console.log("Removed " + result)
+res.send(result)
+} catch (err) {
+res.status(500)
+res.send(`{"error": Error deleting ${err}}`);
+}
+};
+
+exports.instruments_view_one_Page = async function(req, res) {
+    console.log("single view for id " + req.query.id)
+    try{
+    result = await instruments.findById( req.query.id)
+    res.render('instrumentsdetail',
+    { title: 'instruments Detail', toShow: result });
+    }
+    catch(err){
+    res.status(500)
+    res.send(`{'error': '${err}'}`);
+    }
+    };
+
+    exports.instruments_create_Page = function(req, res) {
+        console.log("create view")
+        try{
+        res.render('instrumentscreate', { title: 'instruments Create'});
+        }
+        catch(err){
+        res.status(500)
+        res.send(`{'error': '${err}'}`);
+        }
+        };

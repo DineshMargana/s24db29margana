@@ -1,0 +1,24 @@
+extends layout
+block content
+  h1= title
+ 
+  if toShow == null
+    h2 No instance to show
+  else
+    - let instrumentsid = toShow._id
+    - let instrument_type = toShow.instrument_type
+    - let brand = toShow.brand
+    - let price = toShow.price
+    div
+      div.row
+        div.instrumentsAttr.mr-3 instruments ID is:
+        div #{instrumentsid}
+      div.row
+        div.instrumentsAttr.mr-3 instrument Type is:
+        div #{instrument_type}
+      div.row
+        div.instrumentsAttr.mr-3 brand is:
+        div #{brand}
+      div.row
+        div.instrumentsAttr.mr-3 price is:
+        div #{price}
