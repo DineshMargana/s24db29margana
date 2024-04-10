@@ -16,3 +16,6 @@ router.get('/detail', instruments_controlers.instruments_view_one_Page);
 /* GET create costume page */
 router.get('/create', instruments_controlers.instruments_create_Page);
 module.exports = router;
+
+
+router.get('/update', instruments_controlers.instruments_update_Page);
