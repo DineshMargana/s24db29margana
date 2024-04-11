@@ -1,9 +1,12 @@
 extends layout
 block content
   h1= title
+  if (toShow == null)
+        h2 No instance to delete
+    else
 
   - let instrumentsid = toShow._id
-  - let instruments_type = toShow.instruments_type
+  - let instrument_type = toShow.instrument_type
   - let brand = toShow.brand
   - let price = toShow.price
   div.row(class='mb-2')
@@ -12,8 +15,8 @@ block content
   - let actionid = "/resource/instruments/" + instrumentsid
   form(id='instrumentsForm', action= actionid, method="PUT")
     div.form-group
-      label.instrumentsAttr(for='instruments_type') instruments type :
-      input#instruments_type(type='text', name='instruments_type', value= instruments_type )
+      label.instrumentsAttr(for='instrument_type') instrument type :
+      input#instrument_type(type='text', name='instrument_type', value= instrument_type )
     div.form-group
       label.instrumentsAttr(for='brand') Brand :
       input#brand(type='text', name='brand', value= brand )
