@@ -29,12 +29,12 @@ exports.instruments_update_put = async function(req, res) {
 console.log(`update on id ${req.params.id} with body
 ${JSON.stringify(req.body)}`)
 try {
-let toUpdate = await Costume.findById( req.params.id)
+let toUpdate = await instruments.findById( req.params.id)
 // Do updates of properties
-if(req.body.instruments_type)
-toUpdate.instruments_type = req.body.costume_type;
-if(req.body.instruments_size) toUpdate.cost = req.body.instruments_size;
-if(req.body.instruments_price) toUpdate.size = req.body.instruments_price;
+if(req.body.instrument_type)
+toUpdate.instrument_type = req.body.instrument_type;
+if(req.body.brand) toUpdate.brand = req.body.brand;
+if(req.body.price) toUpdate.price = req.body.price;
 let result = await toUpdate.save();
 console.log("Sucess " + result)
 res.send(result)
