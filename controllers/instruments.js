@@ -129,16 +129,15 @@ exports.instruments_view_one_Page = async function(req, res) {
 //Handle building the view for updating a costume.
 // query provides the id
 exports.instruments_update_Page = async function(req, res) {
-console.log("update view for item "+req.query.id)
-try{
-let result = await instruments.findById(req.query.id)
-res.render('instrumentsupdate', { title: 'instruments Update', toShow: result });
-}
-catch(err){
-res.status(500)
-res.send(`{'error': '${err}'}`);
-}
-}
+    console.log("update view for item " + req.query.id);
+    try {
+      let result = await instruments.findById(req.query.id);
+      res.render('instrumentsupdate', { title: 'Instruments Update', toShow: result });
+    } catch (err) {
+      res.status(500).send({ error: err.message }); // Send error message as JSON object
+    }
+  };
+  
 
 exports.instruments_delete_Page = async function (req, res) {
     console.log("instruments view for id " + req.query.id)

@@ -1,17 +1,26 @@
 extends layout
-
+ 
 block content
   h1= title
-  - var results = [{instrument_type: "Guitar", brand: "Fender", price: 500},{instrument_type: "Drums", brand: "Pearl", price: 1200},{instrument_type: "Keyboard", brand: "Roland", price: 800}]
-
-  .container-fluid
-    .row
-      each f,index in results 
-        .col-sm-2(onclick=`buy(${index})`)
-          | #{f.instrument_type}, #{f.brand}, $#{f.price}
-          
+ 
+  - let items = results;
+  - let o;
   script.
-    function buy(index) {
-      alert(`You purchased Item: ${index+1}`);
+    function buy(x){
+      alert('purchased item ' + x)
+   }
+  div(class='container-fluid')
+    div(class='row m-1')
+    div(class="row row-cols-1 row-cols-sm-4 g-6")
+      each item,index in items
+        - let destination = `dispatch(\"/instruments/update?id=${item._id}\")`
+      
+     
+        div(class="catd text-black mb-3" class='col' class='catd' class='catd-body' class='catd-text' onclick='buy('+index+')') Item Type is #{item.instrument_type}(Item brand is #{item.brand})price is #{item.price}
+          <br>
+          button.btn( class="btn-success ml-1", onclick= destination) Update
+ 
+  script.
+    function dispatch(path){
+      window.location.href=path
     }
-
