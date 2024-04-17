@@ -2,23 +2,27 @@ extends layout
  
 block content
   h1= title
- 
+  p welcome to #{title}
+  - let create = `dispatch(\"/instruments/create\")`
+  button.btn(class="btn-primary ml-1", onclick= create) Create
   - let items = results;
-  - let o;
-  script.
-    function buy(x){
-      alert('purchased item ' + x)
-   }
+  
   div(class='container-fluid')
     div(class='row m-1')
-    div(class="row row-cols-1 row-cols-sm-4 g-6")
-      each item,index in items
+
+      each item, index in items
         - let destination = `dispatch(\"/instruments/update?id=${item._id}\")`
-      
-     
-        div(class="catd text-black mb-3" class='col' class='catd' class='catd-body' class='catd-text' onclick='buy('+index+')') Item Type is #{item.instrument_type}(Item brand is #{item.brand})price is #{item.price}
-          <br>
-          button.btn( class="btn-success ml-1", onclick= destination) Update
+        - let detail = `dispatch(\"/instruments/detail?id=${item._id}\")`
+        - let remove = `dispatch(\"/instruments/delete?id=${item._id}\")`
+        div(class="col-sm-2")
+          ul 
+            li #{item.instrument_type}
+            li #{item.brand}
+            li #{item.price}
+            button.btn(class="btn-success ml-1", onclick= destination) Update 
+            button.btn(class="btn-danger ml-1", onclick= detail) Detail
+            button.btn(class="btn-success ml-1", onclick= remove) Delete
+
  
   script.
     function dispatch(path){
